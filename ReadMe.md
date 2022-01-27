@@ -1,6 +1,6 @@
 # Script for the quick initial config macOS to strart working with Ya.Praktikum
 ## Usage
-Open Terminal program (Open Spootlight and start typing Terminal or `Applicatin -> Utilities -> Terminal` ) and paste following code:
+Open Terminal program (Open Spootlight and start typing Terminal or `Applications -> Utilities -> Terminal` ) and paste following code:
 ```bash
 sh -c "$(curl -fsSL  https://raw.githubusercontent.com/ilyakubryakov/macos_ya.p_initial_config/main/config.sh)"
 ```
