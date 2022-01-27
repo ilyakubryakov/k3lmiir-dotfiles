@@ -2,7 +2,7 @@
 ## Usage
 Open Terminal program (Open Spootlight and start typing Terminal or `Applicatin -> Utilities -> Terminal` ) and paste following code:
 ```bash
-curl бла бла
+sh -c "$(curl -fsSL  https://raw.githubusercontent.com/ilyakubryakov/macos_ya.p_initial_config/main/config.sh)"
 ```
 The script will install the following application:
 

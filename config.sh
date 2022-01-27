@@ -1,24 +1,19 @@
 #!/bin/bash
 #Check Xcode-select installed and install Homebrew
-check_xcode = `xcode-select -p 1>/dev/null;echo $?`
-if [[check_xcode == 0]]; then
-    #Install Homebrew
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-else
-    xcode-select --install
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
-
+xcode-select --install
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 #Install brew's
+/bin/bash -c "$(curl  https://raw.githubusercontent.com/ilyakubryakov/macos_ya.p_initial_config/main/brew.txt --output brew.txt)"
 for i in $(cat brew.txt); do
     brew install "$i" 
 done
-
+rm -rf brew.txt
 #Install brew casks
+/bin/bash -c "$(curl  https://raw.githubusercontent.com/ilyakubryakov/macos_ya.p_initial_config/main/brew_cask.txt --output brew_cask.txt)"
 for i in $(cat brew_cask.txt); do 
     brew install --cask "$i" 
 done
-
+rm -rf brew_cask.txt
 #Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
