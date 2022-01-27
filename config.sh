@@ -26,7 +26,8 @@ pip3 install -r requirements_python.txt
 rm -rf requirements_python.txt
 
 #Install VSCode extentions 
+/bin/bash -c "$(curl https://raw.githubusercontent.com/ilyakubryakov/macos_ya.p_initial_config/main/vscode_extensions_list.txt --output vscode_extensions_list.txt)"
 code="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
 cat vscode_extensions_list.txt | xargs -L 1 $code --install-extension
-
+rm -rf vscode_extensions_list.txt
 osascript -e 'display dialog "All done! You cool! 🍺" buttons {"Yeah"}'
