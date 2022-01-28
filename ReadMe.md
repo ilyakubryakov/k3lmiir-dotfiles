@@ -4,7 +4,7 @@ Open Terminal program (Open Spootlight and start typing Terminal or `Application
 ```bash
 sh -c "$(curl -fsSL  https://raw.githubusercontent.com/ilyakubryakov/macos_ya.p_initial_config/main/config.sh)"
 ```
-The script will install the following application:
+The script will install the following applications:
 
 ```
 Xcode Command Line Tools
