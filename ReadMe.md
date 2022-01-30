@@ -37,4 +37,3 @@ toml==0.10.2
 typing-extensions==3.10.0.2
 zipp==3.6.0
 ```
-Feel free to add something via pull request, I wrote this in half an hour to help studens easy configure their first environment and start pythoning :)
