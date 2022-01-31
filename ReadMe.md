@@ -4,6 +4,7 @@
 - **Ubuntu/Fedora Linux** (Not implemented yet)
 ### How to install
 Just copy/paste following command to the Terminal
+
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/develop/install.sh)"
 ```
