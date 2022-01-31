@@ -104,7 +104,7 @@ setup_color() {
 
 info_msg () {
     printf '\n'
-    printf "$FMT_GREEN $FMT_BOLD $1 $FMT_RESET"
+    echo "$FMT_GREEN $FMT_BOLD $1 $FMT_RESET"
     printf '\n'
 }
 
