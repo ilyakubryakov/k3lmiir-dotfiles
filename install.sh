@@ -1,15 +1,14 @@
 #!/bin/bash
 set -e
 #Branch var
-#shellcheck disable=SC2034
 branch='develop'
 
 #Defaults vars
-MACOS_SCRIPT="macos/config_macos.sh"
+MACOS_SCRIPT="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/macos/config_macos.sh"
 #shellcheck disable=SC2034
 LINUX_SCRIPT="linux/config_linus.sh"
-NON_OS_CONFIG="non-os_config.sh"
-PYTHON_CONFIG="python/config.sh"
+NON_OS_CONFIG="https://github.com/ilyakubryakov/k3lmiir-dotfiles/blob/$branch/non-os_config.sh"
+PYTHON_CONFIG="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/python/config.sh"
 USER=${USER:-$(id -u -n)}
 
 if [ -t 1 ]; then
@@ -139,11 +138,15 @@ if [ -z "${ostype%Darwin*}" ]; then
     printf "$FMT_YELLOW $FMT_BOLD %s %s %s ...It seems you using macOS. Well, let's configure it...\n $FMT_RESET"
     printf '\n'
     #shellcheck source=macos/config_macos.sh
-    source $MACOS_SCRIPT
+    /bin/bash -c "$(curl "$MACOS_SCRIPT" --output /tmp/config_macos.sh)"
+    source /tmp/config_macos.sh
     #shellcheck source=non-os_config.sh
-    source $NON_OS_CONFIG
+    /bin/bash -c "$(curl "$NON_OS_CONFIG" --output /tmp/non-os_config.sh)"
+    source /tmp/non-os_config.sh
     #shellcheck source=python/config.sh
-    source $PYTHON_CONFIG
+    /bin/bash -c "$(curl "$PYTHON_CONFIG" --output /tmp/python_config.sh)"
+    source /tmp/python_config.sh
+    rm -rf /tmp/config_macos.sh /tmp/non-os_config.sh /tmp/python_config.sh
 else
   wrn_msg "...Unfortunately right now operating systems other than macOS is not supported, come back soon..."
 fi
