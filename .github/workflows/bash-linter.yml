@@ -1,9 +1,11 @@
 on:
   push:
     branches:
-      - master,
-      - develop
-
+      - master
+  pull_request:
+    branches:
+    - master
+  
 name: Shell Linter
 
 jobs:
