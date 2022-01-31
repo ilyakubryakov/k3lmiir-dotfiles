@@ -44,5 +44,5 @@ Feel free to create pull request to add/fix sth in this script.
 ### TO-DO
 Adding Linux Support. Coming soon :)
 
-###CI
+### CI
 I using ShellCheck for check bash scripts while push and pull request to the master branch.
