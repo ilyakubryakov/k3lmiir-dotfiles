@@ -1,39 +1,42 @@
-# Script for the quick initial config macOS to strart working with Ya.Praktikum
-## Usage
-Open Terminal program (Open Spootlight and start typing Terminal or `Applications -> Utilities -> Terminal` ) and paste following code:
-```bash
-sh -c "$(curl -fsSL  https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/main/config.sh)"
+# Ilya Kubryakov (k3lmiir) public dotfiles (alpha)
+### Supported platforms
+- **macOS** (Tested on macOS Monterey on Intel and Apple Silicone)
+- **Ubuntu/Fedora Linux** (Not implemented yet)
+### How to install
+Just copy/paste following command to the Terminal
 ```
-The script will install the following applications:
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/develop/install.sh)"
+```
+![Terminal](https://github.com/ilyakubryakov/k3lmiir-dotfiles/develop/images/term.png?raw=true)
+### List of installing application/modules (will be supplemented)
+|Applications List|Python modules List|
+|---|-|
+|python|attrs|
+|awscli|flake|
+|bash-completion|importlib-metadata|
+|curl|iniconfig|
+|git|mccabe
+|midnight-commander|packaging|
+|mongosh|pluggy||
+|nmap|py|
+|shellcheck|pycodestyle|
+|speedtest-cli|pyflakes|
+|telnet|pyparsing|
+|terraform|pytest|
+|vim|pytest-tldr|
+|virtualenv|toml|
+|wget|typing-extensions|
+|zsh|zipp|
+|zsh-completions|paramiko|
+|vagrant|ansible|
+|visual-studio-code|ansible-lint|
+|iterm2|molecule|
+|oh-my-zsh
+|VIM Pathogen
+|VIM Nerdtree
+|VIM Wombat theme
+|ZSH Powerlevel9k
 
-```
-Xcode Command Line Tools
-Homebrew
-Oh-my-zsh
-iTerm2
-python@3.9
-virtualenv
-wget
-curl
-git
-zsh
-```
-and following python libs:
-```
-attrs==21.2.0
-flake8==4.0.1
-importlib-metadata==4.8.1
-iniconfig==1.1.1
-mccabe==0.6.1
-packaging==21.0
-pluggy==1.0.0
-py==1.10.0
-pycodestyle==2.8.0
-pyflakes==2.4.0
-pyparsing==2.4.7
-pytest==6.2.5
-pytest-tldr==0.2.4
-toml==0.10.2
-typing-extensions==3.10.0.2
-zipp==3.6.0
-```
+### Contribution
+Feel free to create pull request to add/fix sth in this script.
+

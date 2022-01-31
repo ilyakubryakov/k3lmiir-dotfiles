@@ -8,7 +8,7 @@ MACOS_SCRIPT="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$
 #shellcheck disable=SC2034
 LINUX_SCRIPT="linux/config_linus.sh"
 NON_OS_CONFIG="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/non-os_config.sh"
-PYTHON_CONFIG="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/python/config.sh"
+PYTHON_CONFIG="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/python/python_config.sh"
 USER=${USER:-$(id -u -n)}
 
 if [ -t 1 ]; then
