@@ -1,3 +1,6 @@
+4ops.terraform
+akamud.vscode-theme-onelight
+arcticicestudio.nord-visual-studio-code
 batisteo.vscode-django
 bbenoist.vagrant
 cschlosser.doxdocgen
@@ -12,6 +15,7 @@ dracula-theme.theme-dracula
 eamodio.gitlens
 EricSia.pythonsnippets3
 GitHub.vscode-pull-request-github
+hashicorp.terraform
 jebbs.plantuml
 jeff-hykin.better-cpp-syntax
 KevinRose.vsc-python-indent
@@ -34,6 +38,8 @@ PKief.material-icon-theme
 PKief.material-product-icons
 redhat.ansible
 redhat.vscode-yaml
+timonwong.shellcheck
 twxs.cmake
 VisualStudioExptTeam.vscodeintellicode
 wholroyd.jinja
+zhuangtongfa.material-theme

@@ -1,33 +1,28 @@
 #!/bin/bash
-info_msg "...Now installing oh-my-zsh..."
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-info_msg "...Now installing some nice Oh-My-Zsh plugins"
-git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
-git clone git://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
-
-info_msg "...Now installing powerlevel9k..."
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-
-info_msg "...Now installing vundle..."
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
-info_msg "...Now installing Pathogen..."
-if [ ! -d "$HOME/.vim/autoload" ] || [ ! -d "$HOME/.vim/bundle" ]
-then
-    mkdir -p "$HOME"/.vim/autoload "$HOME"/.vim/bundle
-    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+info_msg "...Now installing oh-my-zsh with plugins..."
+ohmyzsh_dir_check="$(ls -A "$HOME"/.oh-my-zsh)" 
+if [ -z "$ohmyzsh_dir_check" ]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    git clone https://github.com/zsh-users/zsh-completions "$HOME"/.oh-my-zsh/custom/plugins/zsh-completions
+    git clone git://github.com/zsh-users/zsh-autosuggestions "$HOME"/.zsh/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME"/.zsh/zsh-syntax-highlighting
+    git clone https://github.com/bhilburn/powerlevel9k.git "$HOME"/.oh-my-zsh/custom/themes/powerlevel9k
 else
-    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+    wrn_msg "...Seems oh-my-zsh already installed"
 fi
 
-info_msg "...Now installing Nerdtree for Vim..."
-git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
-
-info_msg "...Now installing vim wombat color scheme..."
+info_msg "...Now install and configure VIM..."
+rm -rf "$HOME"/.vim/autoload "$HOME"/.vim/bundle || true
+mkdir -p "$HOME"/.vim/autoload "$HOME"/.vim/bundle
+git clone https://github.com/VundleVim/Vundle.vim.git "$HOME"/.vim/bundle/Vundle.vim
+curl -LSso "$HOME"/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+git clone https://github.com/scrooloose/nerdtree.git "$HOME"/.vim/bundle/nerdtree
+rm -rf  "$HOME"/.vim/colors/wombat "$HOME"/.vim/colors/
 git clone https://github.com/sheerun/vim-wombat-scheme.git "$HOME"/.vim/colors/wombat
 mv "$HOME"/.vim/colors/wombat/colors/* "$HOME"/.vim/colors/
+
+info_msg "...Now install and configure Yandex.Cloud CLI..."
+curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
 
 read -p "$FMT_BLUE $FMT_BOLD Do you want to change your default shell? y/n $FMT_RESET" -n 1 -r
 printf ''

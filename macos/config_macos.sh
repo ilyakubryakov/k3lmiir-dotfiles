@@ -1,5 +1,6 @@
 #!/bin/bash
 brew_bundle='https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/develop/macos/brew/Brewfile'
+code_path='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 
 printf "$FMT_YELLOW %s • Please make sure you have installed Xcode Command Line tools\n $FMT_RESET"
 printf "$FMT_YELLOW %s • Read here how to do that: https://mac.install.guide/commandlinetools/index.html\n $FMT_RESET"
@@ -19,5 +20,6 @@ info_msg "On next lines Homebrew's install script will ask enter password. Pleas
 
 info_msg "...Now installing several of useful console applications..."
 /bin/bash -c "$(curl $brew_bundle --output /tmp/Brewfile)"
-brew bundle --file=/tmp/Brewfile
+brew bundle --file=/tmp/Brewfile || true
 rm -rf /tmp/brew_pkg
+
