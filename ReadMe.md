@@ -41,3 +41,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotf
 ### Contribution
 Feel free to create pull request to add/fix sth in this script.
 
+### TO-DO
+Adding Linux Support. Coming soon :)
+
+###CI
+I use ShellCheck for lint check bash scripts while push and pull request to the master branch.
+
