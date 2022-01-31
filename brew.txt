@@ -1,6 +1,0 @@
-python@3.9
-virtualenv
-wget
-curl
-git
-zsh
