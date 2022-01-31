@@ -45,5 +45,4 @@ Feel free to create pull request to add/fix sth in this script.
 Adding Linux Support. Coming soon :)
 
 ###CI
-I use ShellCheck for lint check bash scripts while push and pull request to the master branch.
-
+I using ShellCheck for check bash scripts while push and pull request to the master branch.

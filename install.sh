@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 #Branch var
-branch='develop'
+branch='main'
 
 #Defaults vars
 MACOS_SCRIPT="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/macos/config_macos.sh"
