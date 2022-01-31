@@ -7,7 +7,7 @@ branch='develop'
 MACOS_SCRIPT="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/macos/config_macos.sh"
 #shellcheck disable=SC2034
 LINUX_SCRIPT="linux/config_linus.sh"
-NON_OS_CONFIG="https://github.com/ilyakubryakov/k3lmiir-dotfiles/blob/$branch/non-os_config.sh"
+NON_OS_CONFIG="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/non-os_config.sh"
 PYTHON_CONFIG="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/python/config.sh"
 USER=${USER:-$(id -u -n)}
 
