@@ -132,4 +132,6 @@ if [ -z "${ostype%Darwin*}" ]; then
     printf '\n'
     source $MACOS_SCRIPT
     source $NON_OS_CONFIG
+else
+  wrn_msg "...Unfortunately right now operating systems other than macOS is not supported, come back soon..."
 fi
