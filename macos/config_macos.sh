@@ -1,5 +1,4 @@
 #!/bin/bash
-branch='develop'
 brew_bundle_url="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/macos/brew/Brewfile"
 code_path=("/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code")
 code_ext_url="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/vscode/vscode_extensions_list"
@@ -15,7 +14,7 @@ then
     [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1 
 fi
 
-info_msg "Install Homebrew"
+info_msg "...Install Homebrew..."
 info_msg "On next lines Homebrew's install script will ask enter password. Please enter password from your mac user!"
 #/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 

@@ -1,9 +1,13 @@
 #!/bin/bash
 set -e
+#Branch var
+branch='develop'
+
+#Defaults vars
 MACOS_SCRIPT="macos/config_macos.sh"
 LINUX_SCRIPT="linux/config_linus.sh"
-NON_OS_CONFIG='non-os_config.sh'
-
+NON_OS_CONFIG="non-os_config.sh"
+PYTHON_CONFIG="python/config.sh"
 USER=${USER:-$(id -u -n)}
 
 if [ -t 1 ]; then
@@ -132,6 +136,7 @@ if [ -z "${ostype%Darwin*}" ]; then
     printf '\n'
     source $MACOS_SCRIPT
     source $NON_OS_CONFIG
+    source $PYTHON_CONFIG
 else
   wrn_msg "...Unfortunately right now operating systems other than macOS is not supported, come back soon..."
 fi
