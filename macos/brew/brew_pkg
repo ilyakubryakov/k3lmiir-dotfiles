@@ -4,3 +4,11 @@ wget
 curl
 git
 zsh
+zsh-completions
+git
+bash-completion
+vim
+mc
+speedtest-cli
+awscli
+ansible

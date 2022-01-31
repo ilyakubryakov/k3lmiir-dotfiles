@@ -102,8 +102,13 @@ setup_color() {
   FMT_RESET=$(printf '\033[0m')
 }
 
+info_msg () {
+    printf '\n'
+    printf "$FMT_GREEN $FMT_BOLD $1 $FMT_RESET"
+    printf '\n'
+}
 
-  ostype=$(uname)
+ostype=$(uname)
   if [ -z "${ostype%CYGWIN*}" ] && git --version | grep -q msysgit; then
     fmt_error "Windows/MSYS Git is not supported on Cygwin"
     exit 1
@@ -119,5 +124,5 @@ if [ -z "${ostype%Darwin*}" ]; then
     printf '\n'
     printf "$FMT_YELLOW $FMT_BOLD %s %s %s ...It seems you using macOS. Well, let's configure it...\n $FMT_RESET"
     printf '\n'
-    /bin/bash $MACOS_SCRIPT
+    source $MACOS_SCRIPT
 fi
