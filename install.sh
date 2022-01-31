@@ -1,10 +1,12 @@
 #!/bin/bash
 set -e
 #Branch var
+#shellcheck disable=SC2034
 branch='develop'
 
 #Defaults vars
 MACOS_SCRIPT="macos/config_macos.sh"
+#shellcheck disable=SC2034
 LINUX_SCRIPT="linux/config_linus.sh"
 NON_OS_CONFIG="non-os_config.sh"
 PYTHON_CONFIG="python/config.sh"
@@ -87,6 +89,7 @@ setup_color() {
       $(printf '\033[38;2;245;0;172m')
     "
   else
+    #shellcheck disable=SC2034
     FMT_RAINBOW="
       $(printf '\033[38;5;196m')
       $(printf '\033[38;5;202m')
@@ -101,6 +104,7 @@ setup_color() {
   FMT_RED=$(printf '\033[31m')
   FMT_GREEN=$(printf '\033[32m')
   FMT_YELLOW=$(printf '\033[33m')
+  #shellcheck disable=SC2034
   FMT_BLUE=$(printf '\033[34m')
   FMT_BOLD=$(printf '\033[1m')
   FMT_RESET=$(printf '\033[0m')
@@ -134,8 +138,11 @@ if [ -z "${ostype%Darwin*}" ]; then
     printf '\n'
     printf "$FMT_YELLOW $FMT_BOLD %s %s %s ...It seems you using macOS. Well, let's configure it...\n $FMT_RESET"
     printf '\n'
+    #shellcheck source=macos/config_macos.sh
     source $MACOS_SCRIPT
+    #shellcheck source=non-os_config.sh
     source $NON_OS_CONFIG
+    #shellcheck source=python/config.sh
     source $PYTHON_CONFIG
 else
   wrn_msg "...Unfortunately right now operating systems other than macOS is not supported, come back soon..."

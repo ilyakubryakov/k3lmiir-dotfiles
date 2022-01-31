@@ -24,14 +24,14 @@ mv "$HOME"/.vim/colors/wombat/colors/* "$HOME"/.vim/colors/
 info_msg "...Now install and configure Yandex.Cloud CLI..."
 curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
 
-read -p "$FMT_BLUE $FMT_BOLD Do you want to change your default shell? y/n $FMT_RESET\n" -n 1 -r
+read -p "$FMT_BLUE $FMT_BOLD Do you want to change your default shell? y/n $FMT_RESET \n" -n 1 -r
 printf ''
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	info_msg "Now setting default shell..."
     zsh_p=$(which zsh)
     chsh -s "$zsh_p"; exit 0
-    if [[ $? -eq 0 ]]
+    if ! 0
     then
         info_msg "Successfully set your default shell to zsh..."
     else
