@@ -2,7 +2,7 @@
 set -e
 MACOS_SCRIPT="macos/config_macos.sh"
 LINUX_SCRIPT="linux/config_linus.sh"
-
+NON_OS_CONFIG='non-os_config.sh'
 
 USER=${USER:-$(id -u -n)}
 
@@ -126,3 +126,4 @@ if [ -z "${ostype%Darwin*}" ]; then
     printf '\n'
     source $MACOS_SCRIPT
 fi
+source $NON_OS_CONFIG
