@@ -17,7 +17,7 @@ fi
 
 info_msg "...Install Homebrew..."
 info_msg "On next lines Homebrew's install script will ask enter password. Please enter password from your mac user!"
-#/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 info_msg "...Now installing several of useful console applications..."
 /bin/bash -c "$(curl "$brew_bundle_url" --output /tmp/Brewfile)"
