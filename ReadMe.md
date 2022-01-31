@@ -7,7 +7,8 @@ Just copy/paste following command to the Terminal
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/develop/install.sh)"
 ```
-![Terminal](https://github.com/ilyakubryakov/k3lmiir-dotfiles/develop/images/term.png?raw=true)
+![Terminal](https://github.com/ilyakubryakov/k3lmiir-dotfiles/blob/develop/images/term.png)
+
 ### List of installing application/modules (will be supplemented)
 |Applications List|Python modules List|
 |---|-|
