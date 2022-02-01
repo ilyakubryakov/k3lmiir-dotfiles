@@ -1,12 +1,13 @@
 #!/bin/bash
 set -e
 #Branch var
-branch='main'
+branch='develop'
 
 #Defaults vars
 MACOS_SCRIPT="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/macos/config_macos.sh"
 #shellcheck disable=SC2034
-LINUX_SCRIPT="linux/config_linus.sh"
+UBUNTU_SCRIPT="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/linux/config_ubuntu.sh"
+FEDORA_SCRIPT="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/linux/config_fedora.sh"
 NON_OS_CONFIG="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/non-os_config.sh"
 PYTHON_CONFIG="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/python/python_config.sh"
 USER=${USER:-$(id -u -n)}
@@ -126,6 +127,7 @@ ostype=$(uname)
     fmt_error "Windows/MSYS Git is not supported on Cygwin"
     exit 1
   fi
+
 setup_color
 printf '\n'
 printf "$FMT_GREEN $FMT_BOLD %s %s %s This script will install and configure some softwere that I(k3lmiir) like to use.\n $FMT_RESET" 
@@ -146,7 +148,21 @@ if [ -z "${ostype%Darwin*}" ]; then
     #shellcheck source=python/config.sh
     /bin/bash -c "$(curl "$PYTHON_CONFIG" --output /tmp/python_config.sh)"
     source /tmp/python_config.sh
-    rm -rf /tmp/config_macos.sh /tmp/non-os_config.sh /tmp/python_config.sh
+    rm -rf /tmp/config_macos.sh /tmp/non-os_config.sh /tmp/python_config.sh 
+
+elif [ -z "${ostype%Linux*}" ]; then
+      distrotype=$(grep -E  '^(NAME)=' /etc/os-release | awk '{ print substr( $0, 6 ) }' | sed 's/"//g')
+      if [ -z "${distrotype%Ubuntu*}" ]; then
+          printf '\n'
+          printf "$FMT_YELLOW $FMT_BOLD %s %s %s ...It seems you using $distrotype Linux. Well, let's configure it...\n $FMT_RESET"
+          printf '\n'
+          /bin/bash -c "$(curl "$UBUNTU_SCRIPT" --output /tmp/config_ubuntu.sh)"
+          source /tmp/config_ubuntu.sh
+          /bin/bash -c "$(curl "$PYTHON_CONFIG" --output /tmp/python_config.sh)"
+          source /tmp/python_config.sh
+          /bin/bash -c "$(curl "$NON_OS_CONFIG" --output /tmp/non-os_config.sh)"
+          source /tmp/non-os_config.sh
+      fi
 else
-  wrn_msg "...Unfortunately right now operating systems other than macOS is not supported, come back soon..."
+wrn_msg "...Unfortunately right now operating systems other than macOS is not supported, come back soon..."
 fi
