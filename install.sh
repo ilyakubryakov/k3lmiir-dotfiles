@@ -1,16 +1,10 @@
 #!/bin/bash
 set -e
-#Branch var
-branch='develop'
 
 #Defaults vars
-MACOS_SCRIPT="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/macos/config_macos.sh"
+BRANCH="develop"
 #shellcheck disable=SC2034
-UBUNTU_SCRIPT="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/linux/config_ubuntu.sh"
-FEDORA_SCRIPT="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/linux/config_fedora.sh"
-NON_OS_CONFIG="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/non-os_config.sh"
-PYTHON_CONFIG="https://raw.githubusercontent.com/ilyakubryakov/k3lmiir-dotfiles/$branch/python/python_config.sh"
-USER=${USER:-$(id -u -n)}
+GIT_URL="https://github.com/ilyakubryakov/k3lmiir-dotfiles"
 
 if [ -t 1 ]; then
   is_tty() {
@@ -122,6 +116,13 @@ wrn_msg () {
     printf '\n'
 }
 
+git_clone () {
+  info_msg "Cloning repo"
+  git clone $GIT_URL "$HOME/k3lmiir_dotfiles"
+  git branch $BRANCH
+  git checkout $BRANCH
+}
+
 ostype=$(uname)
   if [ -z "${ostype%CYGWIN*}" ] && git --version | grep -q msysgit; then
     fmt_error "Windows/MSYS Git is not supported on Cygwin"
@@ -132,37 +133,49 @@ setup_color
 printf '\n'
 printf "$FMT_GREEN $FMT_BOLD %s %s %s This script will install and configure some softwere that I(k3lmiir) like to use.\n $FMT_RESET" 
 printf "$FMT_GREEN $FMT_BOLD %s %s %s Hope it will save some time for you. Enjoy :)\n $FMT_RESET"
-printf "$FMT_GREEN $FMT_BOLD %s %s %s  • Follow https://www.instagram.com/k3lmiir/" 
+printf "$FMT_GREEN $FMT_BOLD %s %s %s  • Follow https://www.instagram.com/k3lmiir/ • \n $FMT_RESET"
+printf "$FMT_GREEN $FMT_BOLD %s %s %s • 🇺🇦   STOP WAR IN UKRAINE   🇺🇦 • "
 printf '\n'
 
 if [ -z "${ostype%Darwin*}" ]; then
     printf '\n'
     printf "$FMT_YELLOW $FMT_BOLD %s %s %s ...It seems you using macOS. Well, let's configure it...\n $FMT_RESET"
     printf '\n'
-    #shellcheck source=macos/config_macos.sh
-    /bin/bash -c "$(curl "$MACOS_SCRIPT" --output /tmp/config_macos.sh)"
-    source /tmp/config_macos.sh
-    #shellcheck source=non-os_config.sh
-    /bin/bash -c "$(curl "$NON_OS_CONFIG" --output /tmp/non-os_config.sh)"
-    source /tmp/non-os_config.sh
-    #shellcheck source=python/config.sh
-    /bin/bash -c "$(curl "$PYTHON_CONFIG" --output /tmp/python_config.sh)"
-    source /tmp/python_config.sh
-    rm -rf /tmp/config_macos.sh /tmp/non-os_config.sh /tmp/python_config.sh 
-
+    if ! [ -x "$(command -v brew)" ]; then
+      wrn_msg 'Error: Homebrew is not installed.' >&2
+      info_msg "Please install Homebrew. https://brew.sh/index_ru"
+      exit 1
+    else
+        if ! [ -x "$(command -v git)" ]; then
+          info_msg "You forgot install GIT... Installing..."
+          brew install git
+          git_clone
+          # shellcheck source=/dev/null
+          source "$HOME/k3lmiir_dotfiles/macos/config_macos.sh"
+        else
+          git_clone
+          # shellcheck source=/dev/null
+          source "$HOME/k3lmiir_dotfiles/macos/config_macos.sh"
+        fi
+    fi
 elif [ -z "${ostype%Linux*}" ]; then
       distrotype=$(grep -E  '^(NAME)=' /etc/os-release | awk '{ print substr( $0, 6 ) }' | sed 's/"//g')
       if [ -z "${distrotype%Ubuntu*}" ]; then
           printf '\n'
           printf "$FMT_YELLOW $FMT_BOLD %s %s %s ...It seems you using $distrotype Linux. Well, let's configure it...\n $FMT_RESET"
           printf '\n'
-          /bin/bash -c "$(curl "$UBUNTU_SCRIPT" --output /tmp/config_ubuntu.sh)"
-          source /tmp/config_ubuntu.sh
-          /bin/bash -c "$(curl "$PYTHON_CONFIG" --output /tmp/python_config.sh)"
-          source /tmp/python_config.sh
-          /bin/bash -c "$(curl "$NON_OS_CONFIG" --output /tmp/non-os_config.sh)"
-          source /tmp/non-os_config.sh
+          if ! [ -x "$(command -v git)" ]; then
+          info_msg "You forgot install GIT... Installing..."
+          sudo apt -y install git vim
+          git_clone
+          # shellcheck source=/dev/null
+          source "$HOME/k3lmiir_dotfiles/macos/config_macos.sh"
+        else
+          git_clone
+          # shellcheck source=/dev/null
+          source "$HOME/k3lmiir_dotfiles/macos/config_macos.sh"
+        fi
       fi
 else
-wrn_msg "...Unfortunately right now operating systems other than macOS is not supported, come back soon..."
+wrn_msg "...Unfortunately right now operating systems other than macOS/Ubuntu is not supported, come back soon..."
 fi
