@@ -117,10 +117,13 @@ wrn_msg () {
 }
 
 git_clone () {
-  info_msg "Cloning repo"
-  git clone $GIT_URL "$HOME/k3lmiir_dotfiles"
-  git branch $BRANCH
-  git checkout $BRANCH
+  if [ $BRANCH == "main" ]; then
+    info_msg "Cloning main branch"
+    git clone $GIT_URL "$HOME/k3lmiir_dotfiles/"
+  else
+    info_msg "Cloning $BRANCH branch"
+    git clone -b $BRANCH $GIT_URL "$HOME/k3lmiir_dotfiles/"
+  fi 
 }
 
 ostype=$(uname)
@@ -140,6 +143,8 @@ printf '\n'
 if [ -z "${ostype%Darwin*}" ]; then
     printf '\n'
     printf "$FMT_YELLOW $FMT_BOLD %s %s %s ...It seems you using macOS. Well, let's configure it...\n $FMT_RESET"
+    printf "$FMT_YELLOW %s • Please make sure you have installed Xcode Command Line tools\n $FMT_RESET"
+    printf "$FMT_YELLOW %s • Read here how to do that: https://mac.install.guide/commandlinetools/index.html\n $FMT_RESET"
     printf '\n'
     if ! [ -x "$(command -v brew)" ]; then
       wrn_msg 'Error: Homebrew is not installed.' >&2
